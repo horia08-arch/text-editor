@@ -7,23 +7,17 @@ std::string convert(int k) {
         return "backspace";
     else if(k == 224) {
         int arrow = _getch();
-        
-        switch(arrow) {
-            case 72:
-                return "arrow_up";
-                break;
-            case 80:
-                return "arrow_up";
-                break;
-            case 75:
-                return "arrow_left";
-                break;
-            case 77:
-                return "arrow_right";
-                break;
-        }
+
+        if(arrow == 72) 
+            return "arrow_up";
+        if(arrow == 80) 
+            return "arrow_down";
+        if(arrow == 75) 
+            return "arrow_left";
+        if(arrow == 77) 
+            return "arrow_right";
     }
-    else if(k == 17)
+    else if(k == 1)
         return "ctrlandQ";
     else return "character";
 }

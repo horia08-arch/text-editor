@@ -26,24 +26,26 @@ int main() {
     std::string keyStroke = "-1";
     //Looping to detect key strokes until i press ctrl
     //TO DO: add enter
-    while(keyStroke != "ctrlandQ") {
+    while(keyStroke != "ctrlandA") {
         if(_kbhit()) {
             int k = _getch();
             keyStroke = convert(k);
 
             //If I can go to the left. If not, I go on a row above
             if(keyStroke == "arrow_left") {
-                if(pos.second >= -1)
+                if(pos.second > -1)
                     pos.second--;
                 else if(pos.second == -1 && pos.first > 1)
                     pos.first--, pos.second = words[numberOfLines - 1].size() - 1;
             }
             //If i can go to the right. If not, I go on a row below
             else if(keyStroke == "arrow_right") {
-                if(pos.second < words[pos.first].size() - 1)
+                std::cout << "pos second is " << pos.second << " and the bound is " << words[pos.first].size() - 1 << '\n';
+                if(pos.second < words[pos.first].size() - 1) {
                     pos.second++;
+                }
                 else if(pos.second == words[pos.first].size() - 1 && pos.first < numberOfLines)
-                    pos.second = 0, pos.first++;
+                    pos.second = -1, pos.first++;
             }
             //If i can go up. I keep the column or I am at the end of the row if row above is not long enough 
             else if(keyStroke == "arrow_up") {
@@ -51,7 +53,8 @@ int main() {
                     if(words[pos.first].size() <= words[pos.first - 1].size())
                         pos.first--;
                     else pos.first--, pos.second = words[pos.first].size() - 1;
-                }                
+                }  
+                else pos.first;             
             }
             //If i can go down. I keep the column or I am at the end of the row below if it is not long enough
             else if(keyStroke == "arrow_down") {
