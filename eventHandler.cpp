@@ -18,6 +18,6 @@ std::string convert(int k) {
             return "arrow_right";
     }
     else if(k == 1)
-        return "ctrlandQ";
+        return "ctrlandA";
     else return "character";
 }

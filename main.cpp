@@ -36,32 +36,31 @@ int main() {
                 if(pos.second > -1)
                     pos.second--;
                 else if(pos.second == -1 && pos.first > 1)
-                    pos.first--, pos.second = words[numberOfLines - 1].size() - 1;
+                    pos.first--, pos.second = int(words[pos.first].size() - 1);
             }
             //If i can go to the right. If not, I go on a row below
             else if(keyStroke == "arrow_right") {
-                std::cout << "pos second is " << pos.second << " and the bound is " << words[pos.first].size() - 1 << '\n';
-                if(pos.second < words[pos.first].size() - 1) {
+                if(pos.second < int(words[pos.first].size() - 1)) 
                     pos.second++;
-                }
-                else if(pos.second == words[pos.first].size() - 1 && pos.first < numberOfLines)
+                else if(pos.second == int(words[pos.first].size() - 1) && pos.first < numberOfLines) {
                     pos.second = -1, pos.first++;
+                }
             }
             //If i can go up. I keep the column or I am at the end of the row if row above is not long enough 
             else if(keyStroke == "arrow_up") {
                 if(pos.first > 1) {
-                    if(words[pos.first].size() <= words[pos.first - 1].size())
+                    if(pos.second <= int(words[pos.first - 1].size() - 1))
                         pos.first--;
-                    else pos.first--, pos.second = words[pos.first].size() - 1;
+                    else pos.first--, pos.second = int(words[pos.first].size() - 1);
                 }  
                 else pos.first;             
             }
             //If i can go down. I keep the column or I am at the end of the row below if it is not long enough
             else if(keyStroke == "arrow_down") {
                 if(pos.first < numberOfLines) {
-                    if(words[pos.first].size() <= words[pos.first + 1].size())
+                    if(pos.second <= int(words[pos.first + 1].size() - 1))
                         pos.first++;
-                    else pos.first++, pos.second = words[pos.first].size() - 1;
+                    else pos.first++, pos.second = int(words[pos.first].size() - 1);
                 }  
             }
 
